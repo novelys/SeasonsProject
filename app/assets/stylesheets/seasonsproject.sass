@@ -1,0 +1,379 @@
+/*Filename       : seasonsproject.css
+  Redered form   : seasonsproject.sass
+  Need HAML gem  : version 3.0.13
+  Compatibility  : Firefox 3.5, Safari 5.0, Internet Explorer 7 & 8
+  Version        : 1.0 (2010-02-10) YYYY-MM-DD
+  Author         : Novelys
+  Author's Uri   : www.novelys.com
+  Description    : main project file
+
+
+
+// Summary by anchor (ALT+F for search in file) :
+// 0)  _Constants
+// 1)  _Body
+// 2)  _Layouts
+// 3)  _SeasonsCarousel
+// 3)  _Logos
+// 4)  _Tooltip
+
+
+
+// _Constants
+$PROJECT_DEFAULT_FONT         : "Arial"
+$IMG_PROJECT_PATH             : "/assets/seasonsproject/"
+$CORNER_PROJECT_RADIUS        : 4
+$CORNER_PROJECT_TINY_RADIUS   : 1
+$CORNER_PROJECT_INPUT_RADIUS  : 2
+$CHART_BLUE_DARK              : #0060ae
+$CHART_BLUE_LIGHT             : #80bcff
+$CHART_GREEN_LIGHT            : #a2ee50
+$CHART_ORANGE_LIGHT           : #ff6833
+
+
+
+// _Mixins
+@mixin SetBoxRelPositioning
+  :display block
+  :position relative
+
+@mixin SetBoxAbsPositioning
+  :display block
+  :position absolute
+
+@mixin FixMarginBug
+  :padding-top 1px
+  :margin-top -1px
+
+
+
+// _Body
+body
+  :background-color #303030
+  :margin 0px
+  :padding 0px
+
+
+
+// _SplashScreen
+#SplashScreen
+  @include SetBoxAbsPositioning
+  :z-index 12 
+  :width auto
+  :height auto
+  :background-color #000
+  :background-image url( $IMG_PROJECT_PATH + 'splashbackground.png')
+  :background-position center center
+  :background-repeat no-repeat
+  .footer, .header
+    @include SetBoxAbsPositioning
+    :width 100%
+    :float left
+    :left 0px
+  .footer
+    :bottom 0px
+    :height 60px
+    .html5notice
+      :float left
+      :left 0px
+      :top 0px
+  .header
+    :top 0px
+    :height 40px
+  .treelogo
+    @include SetBoxAbsPositioning
+    :width 300px
+    :height 312px
+    :left 50%
+    :margin-left -150px
+    :top 50%
+    :margin-top -210px
+    :background-image url( $IMG_PROJECT_PATH + 'tree_logo.png')
+    :background-position center center
+    :background-repeat no-repeat
+    .leaves
+      @include SetBoxAbsPositioning
+      :width 300px
+      :height 312px
+      :left 0px
+      :top 0px
+      :background-image url( $IMG_PROJECT_PATH + 'tree_logo_leaves.png')
+      :background-position center top
+      :background-repeat no-repeat
+      :opacity 0
+  .launchbar
+    @include SetBoxAbsPositioning
+    :width 300px
+    :height 40px
+    :left 50%
+    :margin-left -150px
+    :top 50%
+    :margin-top 80px
+    .progress
+      @include SetBoxRelPositioning
+      :width 100%
+      :height 100%
+      :background-image url( $IMG_PROJECT_PATH + 'anim_progressbar_onblack.gif')
+      :background-position 32px center
+      :background-repeat no-repeat
+    .launchbtn
+      :display none
+      :position relative
+      :width 170px
+      :opacity 0
+      :margin-left 55px
+      :text-align center
+      :font-size 16px
+      :line-height 16px
+      :color #9a9a9a
+      :cursor pointer
+      :height 30px
+      :padding-top 10px
+      :text-shadow 1px 1px 3px #000
+
+
+
+// _Layouts
+#SeasonApp-01
+  @include SetBoxRelPositioning
+  :width 100%
+  :height auto
+  #Wrapper
+    @include SetBoxRelPositioning
+    :width 100%
+    :height auto
+    #Header, #Content, #Footer
+      @include SetBoxRelPositioning
+      :width 100%
+    #Header, #Footer
+      .contentwrapper
+        @include SetBoxRelPositioning
+        :width 100%
+        :height 100%
+    #Header
+      :height 40px
+      :background-color #000
+      .contentwrapper
+        .seasoninlinelogo
+          :float left
+          :top 0px
+          :left 0px
+    #Content
+      :height 100px
+    #Footer
+      :height 40px
+      :background-color #000
+
+
+
+// _SeasonsCarousel
+#SeasonsCarousel
+  @include SetBoxRelPositioning
+  :z-index 8
+  :width auto
+  :height auto
+  :overflow hidden
+  .seasonswrapper
+    @include SetBoxRelPositioning
+    :z-index 9
+    :width auto
+    :height auto
+    :float left
+    :top 0px
+    :left 0px
+    .season
+      @include SetBoxRelPositioning
+      :width auto
+      :height auto
+      :float left
+      :top 0px
+      :left 0px
+      .paralax
+        @include SetBoxAbsPositioning
+        :width 100%
+        :height 50%
+        :float left
+        :left 0px
+      .paralax.top
+        :top 0px
+        :z-index 10
+      .paralax.bottom
+        :bottom 0px
+        :z-index 10
+      .scenebackground
+        @include SetBoxAbsPositioning
+        :width 100%
+        :height 100%
+        :float left
+        :left 0px
+        :top 0px
+        :z-index 11
+    .season
+      svg
+        @include SetBoxRelPositioning
+        :width 1024px
+        :height 648px
+        :z-index 13
+        :float left
+        :left 50%
+        :margin-left -512px
+        :top 50%
+        :margin-top -324px
+    .season.season0
+      :background-color #edca3e
+      :background-image url( $IMG_PROJECT_PATH + 'bg_seasons0.png')
+      :background-position left bottom
+      :background-repeat repeat-x
+      .scenebackground
+        :background-image url( $IMG_PROJECT_PATH + 'scene_season0.png')
+        :background-position center center
+        :background-repeat no-repeat
+      .paralax.top
+        :background-image url( $IMG_PROJECT_PATH + 'paralax_top_season0.png')
+        :background-position 0px top
+        :background-repeat repeat-x
+      .paralax.bottom
+        :background-image url( $IMG_PROJECT_PATH + 'paralax_bottom_season0.png')
+        :background-position 0px bottom
+        :background-repeat repeat-x
+    .season.season1
+      :background-color #ed6f3e
+      .scenebackground
+        :background-color transparent
+      .paralax.top
+        :background-image url( $IMG_PROJECT_PATH + 'paralax_top_season0.png')
+        :background-position 0px top
+        :background-repeat repeat-x
+      .paralax.bottom
+        :background-image url( $IMG_PROJECT_PATH + 'paralax_bottom_season0.png')
+        :background-position 0px bottom
+        :background-repeat repeat-x
+    .season.season2
+      :background-color #3fedd2
+      .scenebackground
+        :background-color transparent
+      .paralax.top
+        :background-image url( $IMG_PROJECT_PATH + 'paralax_top_season0.png')
+        :background-position 0px top
+        :background-repeat repeat-x
+      .paralax.bottom
+        :background-image url( $IMG_PROJECT_PATH + 'paralax_bottom_season0.png')
+        :background-position 0px bottom
+        :background-repeat repeat-x
+    .season.season3
+      :background-color #b6ed3f
+      .scenebackground
+        :background-color transparent
+      .paralax.top
+        :background-image url( $IMG_PROJECT_PATH + 'paralax_top_season0.png')
+        :background-position 0px top
+        :background-repeat repeat-x
+      .paralax.bottom
+        :background-image url( $IMG_PROJECT_PATH + 'paralax_bottom_season0.png')
+        :background-position 0px bottom
+        :background-repeat repeat-x
+  .closeupbands
+    :display none
+    :position absolute
+    :left 0px
+    :z-index 15
+    :width 100%
+    :height 0%
+  .closeupbands.topband
+    :top 0px
+    :background-color #000
+  .closeupbands.bottomband
+    :bottom 0px
+    :background-color #000
+  .seasonsswitcher
+    @include SetBoxAbsPositioning
+    :z-index 14
+    :width 40px
+    :height 40px
+    :cursor pointer
+  .seasonsswitcher.left
+    :float left
+    :left 10px
+    :top 50%
+    :margin-top -20px
+    :background-image url( $IMG_PROJECT_PATH + 'sprites_btn_prev_season.png')
+    :background-position 0px 0px
+    :background-repeat no-repeat
+  .seasonsswitcher.left:hover
+    :background-position 0px -40px
+  .seasonsswitcher.right
+    :float right
+    :right 10px
+    :top 50%
+    :margin-top -20px
+    :background-image url( $IMG_PROJECT_PATH + 'sprites_btn_next_season.png')
+    :background-position 0px 0px
+    :background-repeat no-repeat
+  .seasonsswitcher.right:hover
+    :background-position 0px -40px
+
+
+
+// _Logos
+.seasoninlinelogo
+  :display block
+  :position relative
+  :width 260px
+  :height 40px
+  :background-image url( $IMG_PROJECT_PATH + 'seasons_inline_logo.png')
+  :background-position 0px 0px
+  :background-repeat no-repeat
+
+.artelogo
+  :display block
+  :position relative
+  :width 100px
+  :height 25px
+  :background-image url( $IMG_PROJECT_PATH + 'arte_logo.png')
+  :background-position 0px 0px
+  :background-repeat no-repeat
+
+.html5notice
+  @include SetBoxAbsPositioning
+  :height 40px
+  :width 260px
+  :background-image url( $IMG_PROJECT_PATH + 'sprite_logo_html5.png')
+  :background-position 0px 0px
+  :background-repeat no-repeat
+  :padding-top 20px
+  :cursor default
+  span
+    @include SetBoxRelPositioning
+    :font-size 13px
+    :line-height 15px
+    :color #171717
+    :margin-left 55px
+.html5notice:hover
+  :background-position 0px -60px
+  span
+    :color #202020
+
+
+
+// _ToolTip
+.tooltip
+  :background-color #ffeac1
+  :border 1px solid #ffd2a2
+  :border-radius $CORNER_PROJECT_RADIUS + px
+  :-webkit-border-radius $CORNER_PROJECT_RADIUS + px
+  :-moz-border-radius $CORNER_PROJECT_RADIUS + px
+  :-khtml-border-radius $CORNER_PROJECT_RADIUS + px
+  :-moz-box-shadow 1px 1px 0px #9f9f9f
+  :-webkit-box-shadow 1px 1px 0px #9f9f9f
+  :box-shadow 1px 1px 0px #9f9f9f
+  :padding 5px 10px
+  :width 190px
+  :display none
+  :color #652811
+  :text-align left
+  :font-size 11px
+  :line-height 14px
+
+
+
+

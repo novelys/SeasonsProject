@@ -1,0 +1,13 @@
+2) Coder la gestion du son 
+  -- Fade in Fade out
+  -- Stop et lecture d'un som
+
+3) mise ne pages restante du header et footer
+
+4) Coder la gestion des seasons
+  -- Démarrage / arrêt des sons loop ambiantes
+  -- Affichage du contenu d'un canvas saison
+    -- Hot stop avec image + action Js associé + sons.
+    -- Animation avec step etc... + zone de déclangement
+
+6) Tooltip, mise en place
