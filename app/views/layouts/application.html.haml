@@ -7,6 +7,7 @@
     %meta{:name =>"apple-mobile-web-app-status-bar-style", :content =>"default"}
     %meta{:name =>"apple-touch-fullscreen", :content => "yes"}
     %meta{:name =>"viewport", :content =>"user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"}
+    = render "/shared/chromeframe_meta"
     %link{:rel  =>"apple-touch-icon", :href => "/icon.png"}
     %link{'rel' =>'Shortcut Icon', 'href' => '/favicon.ico', 'type' => 'image/x-icon'}
     = stylesheet_link_tag "application"
@@ -15,5 +16,4 @@
     #SeasonApp-01
       #Wrapper
         != yield
-
-
+    = render "/shared/chromeframe_js"
