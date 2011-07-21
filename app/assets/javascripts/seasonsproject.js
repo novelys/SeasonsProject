@@ -389,22 +389,22 @@ SeasonsCarousel = function (destID, destH, destW) {
       switch (this.currentseasons) {
         case 0:
           this.season0ambientsound.unmute();
-          this.season0ambientsound.fadeTo( this.seasonvolume, 1000);
+          this.season0ambientsound.fadeTo( this.seasonvolume, 200);
           this.soundactive = true;
         break;
         case 1:
           this.season1ambientsound.unmute();
-          this.season1ambientsound.fadeTo( this.seasonvolume, 1000);
+          this.season1ambientsound.fadeTo( this.seasonvolume, 200);
           this.soundactive = true;
         break;
         case 2:
           this.season2ambientsound.unmute();
-          this.season2ambientsound.fadeTo( this.seasonvolume, 1000);
+          this.season2ambientsound.fadeTo( this.seasonvolume, 200);
           this.soundactive = true;
         break;
         case 3:
           this.season3ambientsound.unmute();
-          this.season3ambientsound.fadeTo( this.seasonvolume, 1000);
+          this.season3ambientsound.fadeTo( this.seasonvolume, 200);
           this.soundactive = true;
         break;
       }
@@ -412,18 +412,46 @@ SeasonsCarousel = function (destID, destH, destW) {
   }
 
   this.MuteAmbientSound = function () {
-    this.season0ambientsound.mute();
-    this.season1ambientsound.mute();
-    this.season2ambientsound.mute();
-    this.season3ambientsound.mute();
+    switch (this.currentseasons) {
+      case 0:
+        this.season0ambientsound.fadeTo( 0, 50, function() {this.mute;});
+      break;
+      case 1:
+        this.season1ambientsound.fadeTo( 0, 50, function() {this.mute;});
+      break;
+      case 2:
+        this.season2ambientsound.fadeTo( 0, 50, function() {this.mute;});
+      break;
+      case 3:
+        this.season3ambientsound.fadeTo( 0, 50, function() {this.mute;});
+      break;
+    }
   }
 
   this.UnMuteAmbientSound = function () {
     if (this.soundactive == true) {
-      this.season0ambientsound.unmute();
-      this.season1ambientsound.unmute();
-      this.season2ambientsound.unmute();
-      this.season3ambientsound.unmute();
+      switch (this.currentseasons) {
+        case 0:
+          this.season0ambientsound.unmute();
+          this.season0ambientsound.fadeTo( this.seasonvolume, 50);
+          this.soundactive = true;
+        break;
+        case 1:
+          this.season1ambientsound.unmute();
+          this.season1ambientsound.fadeTo( this.seasonvolume, 50);
+          this.soundactive = true;
+        break;
+        case 2:
+          this.season2ambientsound.unmute();
+          this.season2ambientsound.fadeTo( this.seasonvolume, 50);
+          this.soundactive = true;
+        break;
+        case 3:
+          this.season3ambientsound.unmute();
+          this.season3ambientsound.fadeTo( this.seasonvolume, 50);
+          this.soundactive = true;
+        break;
+      }
     }
   }
 
@@ -431,6 +459,7 @@ SeasonsCarousel = function (destID, destH, destW) {
     switch (seasonNUM) {
       case 0:
         this.season0ambientsound = new buzz.sound("/assets/sounds/season0ambient.wav", {preload:true, loop:true});
+        this.season0ambientsound.setVolume(0, 0);
         this.season0canvascontent.push (
           new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", false, this),
           new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_02.png", 517, 406, "PopIn-Season0-02", false, this),
@@ -441,6 +470,7 @@ SeasonsCarousel = function (destID, destH, destW) {
       break;
       case 1:
         this.season1ambientsound = new buzz.sound("/assets/sounds/season1ambient.wav", {preload:true, loop:true});
+        this.season1ambientsound.setVolume(0, 0);
         this.season1canvascontent.push (
           new SvgHotSpot(this.season1canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", false, this),
           new SvgHotSpot(this.season1canvas, "/assets/seasonsproject/hotspot_season0_02.png", 517, 406, "PopIn-Season0-02", false, this)
@@ -448,6 +478,7 @@ SeasonsCarousel = function (destID, destH, destW) {
       break;
       case 2:
         this.season2ambientsound = new buzz.sound("/assets/sounds/season2ambient.wav", {preload:true, loop:true});
+        this.season2ambientsound.setVolume(0, 0);
         this.season2canvascontent.push (
           new SvgHotSpot(this.season2canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", false, this),
           new SvgHotSpot(this.season2canvas, "/assets/seasonsproject/hotspot_season0_02.png", 517, 406, "PopIn-Season0-02", false, this),
@@ -456,6 +487,7 @@ SeasonsCarousel = function (destID, destH, destW) {
       break;
       case 3:
         this.season3ambientsound = new buzz.sound("/assets/sounds/season3ambient.wav", {preload:true, loop:true});
+        this.season3ambientsound.setVolume(0, 0);
         this.season3canvascontent.push (
           new SvgHotSpot(this.season3canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", false, this)
         );
