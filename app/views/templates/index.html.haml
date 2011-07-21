@@ -17,11 +17,22 @@
 %img.hide{:src => "/assets/seasonsproject/sprites_btn_next_season.png"}
 %img.hide{:src => "/assets/seasonsproject/sprites_btn_prev_season.png"}
 
+// Seasons ambient sound
+%audio.hide{:src => "/assets/sounds/season0ambient.wav", :preload => "auto"}
+%audio.hide{:src => "/assets/sounds/season1ambient.wav", :preload => "auto"}
+%audio.hide{:src => "/assets/sounds/season2ambient.wav", :preload => "auto"}
+%audio.hide{:src => "/assets/sounds/season3ambient.wav", :preload => "auto"}
+
 // Season 0
 %img.hide{:src => "/assets/seasonsproject/bg_seasons0.png"}
 %img.hide{:src => "/assets/seasonsproject/paralax_bottom_season0.png"}
 %img.hide{:src => "/assets/seasonsproject/paralax_top_season0.png"}
 %img.hide{:src => "/assets/seasonsproject/scene_season0.png"}
+%img.hide{:src => "/assets/seasonsproject/hotspot_season0_01.png"}
+%img.hide{:src => "/assets/seasonsproject/hotspot_season0_02.png"}
+%img.hide{:src => "/assets/seasonsproject/hotspot_season0_03.png"}
+%img.hide{:src => "/assets/seasonsproject/hotspot_season0_04.png"}
+%img.hide{:src => "/assets/seasonsproject/hotspot_season0_05.png"}
 // **************************************************************************************
 // **************************************************************************************
 
@@ -49,60 +60,22 @@
 #Header
   .contentwrapper
     %a.seasoninlinelogo{:href => "/templates/index"}
+    %a.do-test1{:href => nil}
+      Toogle ambient sound
 #Content
 #Footer
   .contentwrapper
 
 
 
-
 // PopIpContent
 .hide
-  #PopIn-Season0-01
-    %p.w-35
-      %strong
-        1
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue interdum mauris, et volutpat libero condimentum ut. 
-      Nam feugiat commodo odio eu vehicula. Donec vitae elit justo. Aliquam dictum pharetra scelerisque. Cras elementum dignissim 
-      tortor ac tristique. Sed tincidunt auctor turpis non euismod. Nunc sed tortor id eros aliquet vulputate. Curabitur sed velit enim, 
-      non porta neque. Donec lacinia augue non diam malesuada ac facilisis magna imperdiet. Aenean laoreet suscipit urna, quis vulputate dui tristique a. 
-      Donec lectus urna, volutpat in varius a, pellentesque in diam.
-  #PopIn-Season0-02
-    %p.w-35
-      %strong
-        2
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue interdum mauris, et volutpat libero condimentum ut. 
-      Nam feugiat commodo odio eu vehicula. Donec vitae elit justo. Aliquam dictum pharetra scelerisque. Cras elementum dignissim 
-      tortor ac tristique. Sed tincidunt auctor turpis non euismod. Nunc sed tortor id eros aliquet vulputate. Curabitur sed velit enim, 
-      non porta neque. Donec lacinia augue non diam malesuada ac facilisis magna imperdiet. Aenean laoreet suscipit urna, quis vulputate dui tristique a. 
-      Donec lectus urna, volutpat in varius a, pellentesque in diam.
-  #PopIn-Season0-03
-    %p.w-35
-      %strong
-        3
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue interdum mauris, et volutpat libero condimentum ut. 
-      Nam feugiat commodo odio eu vehicula. Donec vitae elit justo. Aliquam dictum pharetra scelerisque. Cras elementum dignissim 
-      tortor ac tristique. Sed tincidunt auctor turpis non euismod. Nunc sed tortor id eros aliquet vulputate. Curabitur sed velit enim, 
-      non porta neque. Donec lacinia augue non diam malesuada ac facilisis magna imperdiet. Aenean laoreet suscipit urna, quis vulputate dui tristique a. 
-      Donec lectus urna, volutpat in varius a, pellentesque in diam.
-  #PopIn-Season0-04
-    %p.w-35
-      %strong
-        4
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue interdum mauris, et volutpat libero condimentum ut. 
-      Nam feugiat commodo odio eu vehicula. Donec vitae elit justo. Aliquam dictum pharetra scelerisque. Cras elementum dignissim 
-      tortor ac tristique. Sed tincidunt auctor turpis non euismod. Nunc sed tortor id eros aliquet vulputate. Curabitur sed velit enim, 
-      non porta neque. Donec lacinia augue non diam malesuada ac facilisis magna imperdiet. Aenean laoreet suscipit urna, quis vulputate dui tristique a. 
-      Donec lectus urna, volutpat in varius a, pellentesque in diam.
-  #PopIn-Season0-05
-    %p.w-35
-      %strong
-        5
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin congue interdum mauris, et volutpat libero condimentum ut. 
-      Nam feugiat commodo odio eu vehicula. Donec vitae elit justo. Aliquam dictum pharetra scelerisque. Cras elementum dignissim 
-      tortor ac tristique. Sed tincidunt auctor turpis non euismod. Nunc sed tortor id eros aliquet vulputate. Curabitur sed velit enim, 
-      non porta neque. Donec lacinia augue non diam malesuada ac facilisis magna imperdiet. Aenean laoreet suscipit urna, quis vulputate dui tristique a. 
-      Donec lectus urna, volutpat in varius a, pellentesque in diam.
+  != render :partial => "/popin/season0_01"
+  != render :partial => "/popin/season0_02"
+  != render :partial => "/popin/season0_03"
+  != render :partial => "/popin/season0_04"
+  != render :partial => "/popin/season0_05"
+
 
 
 

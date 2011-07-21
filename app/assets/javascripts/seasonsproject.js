@@ -134,6 +134,16 @@ SeasonsCarousel = function (destID, destH, destW) {
   this.season1canvas;
   this.season2canvas;
   this.season3canvas;
+  this.season0canvascontent = new Array();
+  this.season1canvascontent = new Array();
+  this.season2canvascontent = new Array();
+  this.season3canvascontent = new Array();
+  this.season0ambientsound;
+  this.season1ambientsound;
+  this.season2ambientsound;
+  this.season3ambientsound;
+  this.soundactive = true;
+  this.seasonvolume = 50;
 
   this.CreateContainers = function () {
     $(destID).append('<div id="SeasonsCarousel"></div>');
@@ -162,6 +172,11 @@ SeasonsCarousel = function (destID, destH, destW) {
     this.season1canvas = Raphael("Season1", "100%", "100%");
     this.season2canvas = Raphael("Season2", "100%", "100%");
     this.season3canvas = Raphael("Season3", "100%", "100%");
+
+    this.InitialyseSeasonContent(0);
+    this.InitialyseSeasonContent(1);
+    this.InitialyseSeasonContent(2);
+    this.InitialyseSeasonContent(3);
   }
 
   this.ResizeMe = function (newH, newW) {
@@ -186,20 +201,28 @@ SeasonsCarousel = function (destID, destH, destW) {
         $("#SeasonsCarousel .do-SlideToPreviousSeason").css("opacity", 0);
         $("#SeasonsCarousel .do-SlideToPreviousSeason").css("display", "none");
         if (playSTATUS == "play") { AnimateParalax(0, transTIME, "play");}
+        this.ShowSeasonContent(0);
+        this.PlaySeasonAmbientSound(0);
       break;
       case 1:
         $("#SeasonsCarousel .seasonswrapper").css("left", -season1xpos);
         if (playSTATUS == "play") { AnimateParalax(1, transTIME, "play");}
+        this.ShowSeasonContent(1);
+        this.PlaySeasonAmbientSound(1);
       break;
       case 2:
         $("#SeasonsCarousel .seasonswrapper").css("left", -season2xpos);
         if (playSTATUS == "play") { AnimateParalax(2, transTIME, "play");}
+        this.ShowSeasonContent(2);
+        this.PlaySeasonAmbientSound(2);
       break;
       case 3:
         $("#SeasonsCarousel .seasonswrapper").css("left", -season3xpos);
         $("#SeasonsCarousel .do-SlideToNextSeason").css("opacity", 0);
         $("#SeasonsCarousel .do-SlideToNextSeason").css("display", "none");
         if (playSTATUS == "play") { AnimateParalax(3, transTIME, "play");}
+        this.ShowSeasonContent(3);
+        this.PlaySeasonAmbientSound(3);
       break;
     }
     this.currentseasons = seasonNUM;
@@ -217,6 +240,11 @@ SeasonsCarousel = function (destID, destH, destW) {
         AnimateParalax(1, transTIME, "stop");
         AnimateParalax(2, transTIME, "stop");
         AnimateParalax(3, transTIME, "stop");
+        this.ShowSeasonContent(0);
+        this.HideSeasonContent(1);
+        this.HideSeasonContent(2);
+        this.HideSeasonContent(3);
+        this.PlaySeasonAmbientSound(0);
         $("#SeasonsCarousel .do-SlideToPreviousSeason").animate({
           opacity: 0},
           transTIME/4,
@@ -232,6 +260,11 @@ SeasonsCarousel = function (destID, destH, destW) {
         AnimateParalax(2, transTIME, "stop");
         AnimateParalax(3, transTIME, "stop");
         AnimateParalax(0, transTIME, "stop");
+        this.ShowSeasonContent(1);
+        this.HideSeasonContent(2);
+        this.HideSeasonContent(3);
+        this.HideSeasonContent(0);
+        this.PlaySeasonAmbientSound(1);
         $("#SeasonsCarousel .do-SlideToPreviousSeason").css("display", "block");
         $("#SeasonsCarousel .do-SlideToPreviousSeason").animate({opacity: 1}, transTIME/4, "linear");
       break;
@@ -241,6 +274,11 @@ SeasonsCarousel = function (destID, destH, destW) {
         AnimateParalax(3, transTIME, "stop");
         AnimateParalax(0, transTIME, "stop");
         AnimateParalax(1, transTIME, "stop");
+        this.ShowSeasonContent(2);
+        this.HideSeasonContent(3);
+        this.HideSeasonContent(0);
+        this.HideSeasonContent(1);
+        this.PlaySeasonAmbientSound(2);
         $("#SeasonsCarousel .do-SlideToNextSeason").css("display", "block");
         $("#SeasonsCarousel .do-SlideToNextSeason").animate({opacity: 1}, transTIME/4, "linear");
       break;
@@ -250,6 +288,11 @@ SeasonsCarousel = function (destID, destH, destW) {
         AnimateParalax(0, transTIME, "stop");
         AnimateParalax(1, transTIME, "stop");
         AnimateParalax(2, transTIME, "stop");
+        this.ShowSeasonContent(3);
+        this.HideSeasonContent(0);
+        this.HideSeasonContent(1);
+        this.HideSeasonContent(2);
+        this.PlaySeasonAmbientSound(3);
         $("#SeasonsCarousel .do-SlideToNextSeason").animate({
           opacity: 0},
           transTIME/4,
@@ -261,6 +304,213 @@ SeasonsCarousel = function (destID, destH, destW) {
       break;
     }
     this.currentseasons = seasonNUM;
+  }
+
+  this.ReturnCurrentSeasonNum = function () {
+    return this.currentseasons;
+  }
+
+  this.ReturnSeasonCanvas = function (seasonNUM) {
+    switch (seasonNUM) {
+      case 0:
+        return this.season0canvas;
+      break;
+      case 1:
+        return this.season1canvas;
+      break;
+      case 2:
+        return this.season2canvas;
+      break;
+      case 3:
+        return this.season3canvas;
+      break;
+    }
+  }
+
+  this.PlaySeasonAmbientSound = function (seasonNUM) {
+    switch (seasonNUM) {
+      case 0:
+        if (this.soundactive == true) {
+          this.season0ambientsound.play().fadeIn(500).setVolume(this.seasonvolume);
+          this.season1ambientsound.play().stop();
+          this.season2ambientsound.play().stop();
+          this.season3ambientsound.play().stop();
+        }
+      break;
+      case 1:
+        if (this.soundactive == true) {
+          this.season1ambientsound.play().fadeIn(500).setVolume(this.seasonvolume);
+          this.season2ambientsound.play().stop();
+          this.season3ambientsound.play().stop();
+          this.season0ambientsound.play().stop();
+        }
+      break;
+      case 2:
+        if (this.soundactive == true) {
+          this.season2ambientsound.play().fadeIn(500).setVolume(this.seasonvolume);
+          this.season3ambientsound.play().stop();
+          this.season0ambientsound.play().stop();
+          this.season1ambientsound.play().stop();
+        }
+      break;
+      case 3:
+        if (this.soundactive == true) {
+          this.season3ambientsound.play().fadeIn(500).setVolume(this.seasonvolume);
+          this.season0ambientsound.play().stop();
+          this.season1ambientsound.play().stop();
+          this.season2ambientsound.play().stop();
+        }
+      break;
+    }
+  }
+
+  this.ToogleMuteAmbientSound = function () {
+    if (this.soundactive == true) {
+      switch (this.currentseasons) {
+        case 0:
+          this.season0ambientsound.fadeTo( 0, 200, function() {this.mute;});
+          this.soundactive = false;
+        break;
+        case 1:
+          this.season1ambientsound.fadeTo( 0, 200, function() {this.mute;});
+          this.soundactive = false;
+        break;
+        case 2:
+          this.season2ambientsound.fadeTo( 0, 200, function() {this.mute;});
+          this.soundactive = false;
+        break;
+        case 3:
+          this.season3ambientsound.fadeTo( 0, 200, function() {this.mute;});
+          this.soundactive = false;
+        break;
+      }
+    }
+    else {
+      switch (this.currentseasons) {
+        case 0:
+          this.season0ambientsound.unmute();
+          this.season0ambientsound.fadeTo( this.seasonvolume, 1000);
+          this.soundactive = true;
+        break;
+        case 1:
+          this.season1ambientsound.unmute();
+          this.season1ambientsound.fadeTo( this.seasonvolume, 1000);
+          this.soundactive = true;
+        break;
+        case 2:
+          this.season2ambientsound.unmute();
+          this.season2ambientsound.fadeTo( this.seasonvolume, 1000);
+          this.soundactive = true;
+        break;
+        case 3:
+          this.season3ambientsound.unmute();
+          this.season3ambientsound.fadeTo( this.seasonvolume, 1000);
+          this.soundactive = true;
+        break;
+      }
+    }
+  }
+
+  this.MuteAmbientSound = function () {
+    this.season0ambientsound.mute();
+    this.season1ambientsound.mute();
+    this.season2ambientsound.mute();
+    this.season3ambientsound.mute();
+  }
+
+  this.UnMuteAmbientSound = function () {
+    if (this.soundactive == true) {
+      this.season0ambientsound.unmute();
+      this.season1ambientsound.unmute();
+      this.season2ambientsound.unmute();
+      this.season3ambientsound.unmute();
+    }
+  }
+
+  this.InitialyseSeasonContent = function (seasonNUM) {
+    switch (seasonNUM) {
+      case 0:
+        this.season0ambientsound = new buzz.sound("/assets/sounds/season0ambient.wav", {preload:true, loop:true});
+        this.season0canvascontent.push (
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", false, this),
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_02.png", 517, 406, "PopIn-Season0-02", false, this),
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_03.png", 810, 434, "PopIn-Season0-03", false, this),
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_04.png", 408, 175, "PopIn-Season0-04", true, this),
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_05.png", 65, 432, "PopIn-Season0-05", true, this)
+        );
+      break;
+      case 1:
+        this.season1ambientsound = new buzz.sound("/assets/sounds/season1ambient.wav", {preload:true, loop:true});
+        this.season1canvascontent.push (
+          new SvgHotSpot(this.season1canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", false, this),
+          new SvgHotSpot(this.season1canvas, "/assets/seasonsproject/hotspot_season0_02.png", 517, 406, "PopIn-Season0-02", false, this)
+        );
+      break;
+      case 2:
+        this.season2ambientsound = new buzz.sound("/assets/sounds/season2ambient.wav", {preload:true, loop:true});
+        this.season2canvascontent.push (
+          new SvgHotSpot(this.season2canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", false, this),
+          new SvgHotSpot(this.season2canvas, "/assets/seasonsproject/hotspot_season0_02.png", 517, 406, "PopIn-Season0-02", false, this),
+          new SvgHotSpot(this.season2canvas, "/assets/seasonsproject/hotspot_season0_03.png", 810, 434, "PopIn-Season0-03", false, this)
+        );
+      break;
+      case 3:
+        this.season3ambientsound = new buzz.sound("/assets/sounds/season3ambient.wav", {preload:true, loop:true});
+        this.season3canvascontent.push (
+          new SvgHotSpot(this.season3canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", false, this)
+        );
+      break;
+    }
+  }
+
+  this.ShowSeasonContent = function (seasonNUM) {
+    switch (seasonNUM) {
+      case 0:
+        for (var i in this.season0canvascontent) {
+          this.season0canvascontent[i].AnimationIn();
+        }
+      break;
+      case 1:
+        for (var i in this.season1canvascontent) {
+          this.season1canvascontent[i].AnimationIn();
+        }
+      break;
+      case 2:
+        for (var i in this.season2canvascontent) {
+          this.season2canvascontent[i].AnimationIn();
+        }
+      break;
+      case 3:
+        for (var i in this.season3canvascontent) {
+          this.season3canvascontent[i].AnimationIn();
+        }
+      break;
+    }
+  }
+
+  this.HideSeasonContent = function (seasonNUM) {
+    switch (seasonNUM) {
+      case 0:
+        for (var i in this.season0canvascontent) {
+          this.season0canvascontent[i].AnimationOut();
+        }
+      break;
+      case 1:
+        for (var i in this.season1canvascontent) {
+          this.season1canvascontent[i].AnimationOut();
+        }
+      break;
+      case 2:
+        for (var i in this.season2canvascontent) {
+          this.season2canvascontent[i].AnimationOut();
+        }
+      break;
+      case 3:
+        for (var i in this.season3canvascontent) {
+          this.season3canvascontent[i].AnimationOut();
+        }
+      break;
+    }
   }
 
   function PlaySeasonTransition(seasonPOS, transTIME) {
@@ -303,27 +553,6 @@ SeasonsCarousel = function (destID, destH, destW) {
     }
   }
 
-  this.ReturnCurrentSeasonNum = function () {
-    return this.currentseasons;
-  }
-
-  this.ReturnSeasonCanvas = function (seasonNUM) {
-    switch (seasonNUM) {
-      case 0:
-        return this.season0canvas;
-      break;
-      case 1:
-        return this.season1canvas;
-      break;
-      case 2:
-        return this.season2canvas;
-      break;
-      case 3:
-        return this.season3canvas;
-      break;
-    }
-  }
-
   this.CreateContainers();
   this.CreateNavigationButtons();
   this.CreateSeasonsContainers();
@@ -337,7 +566,7 @@ SeasonsCarousel = function (destID, destH, destW) {
 // ***************************************************************************************
 //                                RAPHAEL HOT SPOT CLASS
 // ***************************************************************************************
-SvgHotSpot = function (canvasOBJ, imgURL, posX, posY, popinID) {
+SvgHotSpot = function (canvasOBJ, imgURL, posX, posY, popinID, toggleAMBIENT, carouselOBJ) {
   this.canvasobj       = canvasOBJ;
   this.posx            = posX - 40;
   this.posy            = posY - 40;
@@ -351,6 +580,8 @@ SvgHotSpot = function (canvasOBJ, imgURL, posX, posY, popinID) {
   var popindomselector = null;
   var spotimg          = null;
   var spothitzone      = null;
+  var carouselboject   = carouselOBJ;
+  var toggleambient    = toggleAMBIENT;
 
   this.Constructor = function () {
     spotimg          = this.canvasobj.image(this.imgurl, this.posx, this.posy, 80, 80);
@@ -370,7 +601,9 @@ SvgHotSpot = function (canvasOBJ, imgURL, posX, posY, popinID) {
       'overlayColor'   : '#1d1d1d',
       'transitionIn'   : 'fade',
       'speedIn'        : '500',
-      'speedOut'       : '500'
+      'speedOut'       : '500',
+      'onStart'        : function() {MuteAmbientSound();},
+      'onClosed'       : function() {UnMuteAmbientSound();}
     });
 
     spothitzone.mouseover(function (event) {
@@ -384,18 +617,29 @@ SvgHotSpot = function (canvasOBJ, imgURL, posX, posY, popinID) {
     });
   }
 
+  function MuteAmbientSound() {
+    if (toggleambient == true) {
+      carouselboject.MuteAmbientSound();
+    }
+  }
+
+  function UnMuteAmbientSound() {
+    if (toggleambient == true) {
+      carouselboject.UnMuteAmbientSound();
+    }
+  }
+
   this.AnimationIn = function () {
-    spotimg.animate({"opacity": "1.0"}, 2000);
-    spothitzone.animate({"opacity": "1.0"}, 2000);
+    spotimg.animate({"opacity": "1.0"}, 1000);
+    spothitzone.animate({"opacity": "1.0"}, 1000);
   }
 
   this.AnimationOut = function () {
-    spotimg.animate({"opacity": "0.0"}, 2000);
-    spothitzone.animate({"opacity": "0.0"}, 2000);
+    spotimg.animate({"opacity": "0.0"}, 200);
+    spothitzone.animate({"opacity": "0.0"}, 200);
   }
 
   this.Constructor();
-  this.AnimationIn();
 }
 
 
@@ -423,7 +667,6 @@ $(document).ready(function () {
   var contentwidth   = seasonlayout.ReturnContentWidth();
   var seasoncarousel = new SeasonsCarousel("#Content", contentheight, contentwidth);
   var currentseason  = seasoncarousel.ReturnCurrentSeasonNum();
-
 
   // Next Button
   // Attach event on next button
@@ -473,13 +716,13 @@ $(document).ready(function () {
   // Attach event on start button
   $(".do-FadeOutSplash").click(function (e) {
     splashscreen.FadeOutMe(600);
-    // Tests
-    var hotspo01 = new SvgHotSpot(seasoncarousel.season0canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01");
-    var hotspo02 = new SvgHotSpot(seasoncarousel.season0canvas, "/assets/seasonsproject/hotspot_season0_02.png", 517, 406, "PopIn-Season0-02");
-    var hotspo03 = new SvgHotSpot(seasoncarousel.season0canvas, "/assets/seasonsproject/hotspot_season0_03.png", 810, 434, "PopIn-Season0-03");
-    var hotspo04 = new SvgHotSpot(seasoncarousel.season0canvas, "/assets/seasonsproject/hotspot_season0_04.png", 408, 175, "PopIn-Season0-04");
-    var hotspo05 = new SvgHotSpot(seasoncarousel.season0canvas, "/assets/seasonsproject/hotspot_season0_05.png", 65, 432, "PopIn-Season0-05");
-    // End of tests bloc
+    e.preventDefault(); 
+  });
+
+  // Soud Button
+  // Attach event on soud button
+  $(".do-test1").click(function (e) {
+    seasoncarousel.ToogleMuteAmbientSound()
     e.preventDefault(); 
   });
 

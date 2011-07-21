@@ -10,5 +10,6 @@
 //= require jquery.fancybox-1.3.4
 //= require jquery.backgroundPosition
 //= require raphael-1.5.2
+//= require buzz-1.0.3
 //= require seasonsproject
 
