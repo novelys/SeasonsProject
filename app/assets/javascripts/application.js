@@ -7,8 +7,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui-1.8.13
+//= require html5video-2.0.2
 //= require jquery.fancybox-1.3.4
 //= require jquery.backgroundPosition
+//= require jquery.tools.min
 //= require raphael-1.5.2
 //= require buzz-1.0.3
 //= require seasonsproject

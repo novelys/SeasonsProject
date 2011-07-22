@@ -143,7 +143,8 @@ SeasonsCarousel = function (destID, destH, destW) {
   this.season2ambientsound;
   this.season3ambientsound;
   this.soundactive = true;
-  this.seasonvolume = 50;
+  this.seasonvolume = 20;
+  this.fxseasonvolume = 30;
 
   this.CreateContainers = function () {
     $(destID).append('<div id="SeasonsCarousel"></div>');
@@ -331,31 +332,31 @@ SeasonsCarousel = function (destID, destH, destW) {
     switch (seasonNUM) {
       case 0:
         if (this.soundactive == true) {
-          this.season0ambientsound.play().fadeIn(500).setVolume(this.seasonvolume);
-          this.season1ambientsound.play().stop();
-          this.season2ambientsound.play().stop();
-          this.season3ambientsound.play().stop();
+          this.season0ambientsound.play().fadeTo( this.seasonvolume, 200);
+          this.season1ambientsound.stop();
+          this.season2ambientsound.stop();
+          this.season3ambientsound.stop();
         }
       break;
       case 1:
         if (this.soundactive == true) {
-          this.season1ambientsound.play().fadeIn(500).setVolume(this.seasonvolume);
-          this.season2ambientsound.play().stop();
-          this.season3ambientsound.play().stop();
-          this.season0ambientsound.play().stop();
+          this.season1ambientsound.play().fadeTo( this.seasonvolume, 200);
+          this.season2ambientsound.stop();
+          this.season3ambientsound.stop();
+          this.season0ambientsound.stop();
         }
       break;
       case 2:
         if (this.soundactive == true) {
-          this.season2ambientsound.play().fadeIn(500).setVolume(this.seasonvolume);
-          this.season3ambientsound.play().stop();
-          this.season0ambientsound.play().stop();
-          this.season1ambientsound.play().stop();
+          this.season2ambientsound.play().fadeTo( this.seasonvolume, 200);
+          this.season3ambientsound.stop();
+          this.season0ambientsound.stop();
+          this.season1ambientsound.stop();
         }
       break;
       case 3:
         if (this.soundactive == true) {
-          this.season3ambientsound.play().fadeIn(500).setVolume(this.seasonvolume);
+          this.season3ambientsound.play().fadeTo( this.seasonvolume, 200);
           this.season0ambientsound.play().stop();
           this.season1ambientsound.play().stop();
           this.season2ambientsound.play().stop();
@@ -461,36 +462,24 @@ SeasonsCarousel = function (destID, destH, destW) {
         this.season0ambientsound = new buzz.sound("/assets/sounds/season0ambient.wav", {preload:true, loop:true});
         this.season0ambientsound.setVolume(0, 0);
         this.season0canvascontent.push (
-          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", false, this),
-          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_02.png", 517, 406, "PopIn-Season0-02", false, this),
-          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_03.png", 810, 434, "PopIn-Season0-03", false, this),
-          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_04.png", 408, 175, "PopIn-Season0-04", true, this),
-          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_05.png", 65, 432, "PopIn-Season0-05", true, this)
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", true, this, "/assets/sounds/hotspot_season0_01.wav", "Video-Season0-01", false),
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_02.png", 517, 406, "PopIn-Season0-02", false, this, "/assets/sounds/hotspot_season0_02.wav"),
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_03.png", 810, 434, "PopIn-Season0-03", false, this, "/assets/sounds/hotspot_season0_03.wav"),
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_04.png", 408, 175, "PopIn-Season0-04", false, this, "/assets/sounds/hotspot_season0_04.wav"),
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_05.png", 65, 432, "PopIn-Season0-05", false, this, "/assets/sounds/hotspot_season0_05.wav")
         );
       break;
       case 1:
         this.season1ambientsound = new buzz.sound("/assets/sounds/season1ambient.wav", {preload:true, loop:true});
         this.season1ambientsound.setVolume(0, 0);
-        this.season1canvascontent.push (
-          new SvgHotSpot(this.season1canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", false, this),
-          new SvgHotSpot(this.season1canvas, "/assets/seasonsproject/hotspot_season0_02.png", 517, 406, "PopIn-Season0-02", false, this)
-        );
       break;
       case 2:
         this.season2ambientsound = new buzz.sound("/assets/sounds/season2ambient.wav", {preload:true, loop:true});
         this.season2ambientsound.setVolume(0, 0);
-        this.season2canvascontent.push (
-          new SvgHotSpot(this.season2canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", false, this),
-          new SvgHotSpot(this.season2canvas, "/assets/seasonsproject/hotspot_season0_02.png", 517, 406, "PopIn-Season0-02", false, this),
-          new SvgHotSpot(this.season2canvas, "/assets/seasonsproject/hotspot_season0_03.png", 810, 434, "PopIn-Season0-03", false, this)
-        );
       break;
       case 3:
         this.season3ambientsound = new buzz.sound("/assets/sounds/season3ambient.wav", {preload:true, loop:true});
         this.season3ambientsound.setVolume(0, 0);
-        this.season3canvascontent.push (
-          new SvgHotSpot(this.season3canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", false, this)
-        );
       break;
     }
   }
@@ -598,12 +587,14 @@ SeasonsCarousel = function (destID, destH, destW) {
 // ***************************************************************************************
 //                                RAPHAEL HOT SPOT CLASS
 // ***************************************************************************************
-SvgHotSpot = function (canvasOBJ, imgURL, posX, posY, popinID, toggleAMBIENT, carouselOBJ) {
+SvgHotSpot = function (canvasOBJ, imgURL, posX, posY, popinID, toggleAMBIENT, carouselOBJ, soundURL, videoID, autoPlay) {
   this.canvasobj       = canvasOBJ;
   this.posx            = posX - 40;
   this.posy            = posY - 40;
   this.popinid         = popinID;
   this.imgurl          = imgURL;
+  this.oversoundurl    = soundURL;
+  this.videoid         = videoID;
   var offsetx          = 40;
   var offsety          = 40;
   var hitzonex         = this.posx + offsetx;
@@ -612,8 +603,12 @@ SvgHotSpot = function (canvasOBJ, imgURL, posX, posY, popinID, toggleAMBIENT, ca
   var popindomselector = null;
   var spotimg          = null;
   var spothitzone      = null;
+  var oversound        = null;
   var carouselboject   = carouselOBJ;
   var toggleambient    = toggleAMBIENT;
+  var videoid          = videoID;
+  var autoplay         = autoPlay;
+  var myplayer         = null;
 
   this.Constructor = function () {
     spotimg          = this.canvasobj.image(this.imgurl, this.posx, this.posy, 80, 80);
@@ -625,22 +620,32 @@ SvgHotSpot = function (canvasOBJ, imgURL, posX, posY, popinID, toggleAMBIENT, ca
     spotimg.attr({"opacity": "0.0"});
     spothitzone.attr({"opacity": "0.0"});
 
+    oversound = new buzz.sound(this.oversoundurl, {preload:true, loop:false});
+    oversound.setVolume(carouselOBJ.fxseasonvolume, 0);
+
     $(spothitzone.node).attr("class", actionclass);
     $(spothitzone.node).attr("href", popindomselector);
     
     $("."+actionclass).fancybox({
-      'overlayOpacity' : '0.9',
+      'overlayOpacity' : '0.0',
       'overlayColor'   : '#1d1d1d',
       'transitionIn'   : 'fade',
       'speedIn'        : '500',
       'speedOut'       : '500',
+      'margin'         : '0',
+      'padding'        : '0',
+      'scrolling'      : 'none',
       'onStart'        : function() {MuteAmbientSound();},
+      'onComplete'     : function() {StartVideoPlayer();},
       'onClosed'       : function() {UnMuteAmbientSound();}
     });
 
     spothitzone.mouseover(function (event) {
       spotimg.animate({"translation": "0, -7"}, 200, "linear");
       spothitzone.animate({"translation": "0, -7"}, 200, "linear");
+      if (carouselOBJ.soundactive == true) {
+        oversound.play();
+      }
     });
 
     spothitzone.mouseout(function (event) {
@@ -652,6 +657,15 @@ SvgHotSpot = function (canvasOBJ, imgURL, posX, posY, popinID, toggleAMBIENT, ca
   function MuteAmbientSound() {
     if (toggleambient == true) {
       carouselboject.MuteAmbientSound();
+    }
+  }
+
+  function StartVideoPlayer() {
+    if (videoid) {
+      myplayer = VideoJS.setup(videoid);
+      if (autoplay == true) {
+        myplayer.play();
+      }
     }
   }
 
@@ -699,6 +713,7 @@ $(document).ready(function () {
   var contentwidth   = seasonlayout.ReturnContentWidth();
   var seasoncarousel = new SeasonsCarousel("#Content", contentheight, contentwidth);
   var currentseason  = seasoncarousel.ReturnCurrentSeasonNum();
+
 
   // Next Button
   // Attach event on next button
@@ -753,8 +768,9 @@ $(document).ready(function () {
 
   // Soud Button
   // Attach event on soud button
-  $(".do-test1").click(function (e) {
-    seasoncarousel.ToogleMuteAmbientSound()
+  $(".do-ToggleSound").click(function (e) {
+    seasoncarousel.ToogleMuteAmbientSound();
+    $(this).toggleClass('inactive')
     e.preventDefault(); 
   });
 

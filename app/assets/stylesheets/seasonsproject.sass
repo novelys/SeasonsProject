@@ -16,6 +16,8 @@
 // 3)  _SeasonsCarousel
 // 3)  _Logos
 // 4)  _Tooltip
+// 5)  _UserMenu
+// 6)  _PopIn
 
 
 
@@ -158,6 +160,8 @@ body
           :float left
           :top 0px
           :left 0px
+        .usermenu
+          :float right
     #Content
       :height 100px
     #Footer
@@ -373,6 +377,110 @@ body
   :text-align left
   :font-size 11px
   :line-height 14px
+
+
+
+// _UserMenu
+ul.usermenu
+  @include SetBoxRelPositioning
+  :padding 0px
+  :margin 0px
+  :list-style none
+  :width auto
+  :height 40px
+  li
+    :display inline-block
+    :padding-right 10px
+    :padding-left 40px
+    :height 40px
+    :cursor pointer
+    :border-style solid
+    :border-width 0px 0px 0px 1px
+    :border-color #212121
+  li
+    span
+      @include SetBoxRelPositioning
+      :font-size 12px
+      :line-height 12px
+      :color #7e7e7e
+      :margin-top 15px
+      strong
+        :font-size 12px
+        :line-height 12px
+        :font-weight normal
+        :color #7e7e7e
+  li.sound
+    :background-image url( $IMG_PROJECT_PATH + 'sprite_icn_sound.png')
+    :background-position 0px 0px
+    :background-repeat no-repeat
+  li.sound.inactive
+    :background-position 0px -40px
+  li.usersubmenu
+    :background-image url( $IMG_PROJECT_PATH + 'sprite_icn_user_preferences.png')
+    :background-position 0px 0px
+    :background-repeat no-repeat
+    :background-color #1e1e1e
+  li.usersubmenu:hover
+    :background-position 0px -40px
+  li:hover
+    span
+      :color #bfbfbf
+      strong
+        :color #ff5d18
+
+
+
+// _PopInVideo
+.popinvideo
+  @include SetBoxRelPositioning
+  :min-height 528px
+  :width 660px
+  .video
+    @include SetBoxRelPositioning
+    :padding 10px
+    :width 640px
+    :background-color #000
+    .copyright
+      @include SetBoxRelPositioning
+      :width 640px
+      :height 20px
+      span
+        @include SetBoxRelPositioning
+        :width auto
+        :float right
+        :margin-top 10px
+        :font-size 10px
+        :line-height 10px
+        :color #202020
+  .content
+    @include SetBoxRelPositioning
+    :padding 10px
+    :width 640px
+    :min-height 244px
+    :background-color #101010
+
+
+
+// _FancyClose
+#fancybox-close
+  :position absolute
+  :top -10px
+  :right -10px
+  :width 20px
+  :height 20px
+  :cursor pointer
+  :z-index 1103
+  :display none
+  :background-image url($IMG_PROJECT_PATH + "sprite_btn_close.png") !important
+  :background-repeat no-repeat
+  :background-position 0px 0px
+#fancybox-close:hover
+  :background-position 0px -20px
+#fancybox-close:active
+  :background-position 0px -40px
+#fancybox-close.inactive
+  :background-position 0px -60px
+
 
 
 

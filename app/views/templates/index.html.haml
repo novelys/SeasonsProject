@@ -16,6 +16,8 @@
 // UI
 %img.hide{:src => "/assets/seasonsproject/sprites_btn_next_season.png"}
 %img.hide{:src => "/assets/seasonsproject/sprites_btn_prev_season.png"}
+%img.hide{:src => "/assets/seasonsproject/sprite_icn_sound.png"}
+%img.hide{:src => "/assets/seasonsproject/sprite_icn_user_preferences.png"}
 
 // Seasons ambient sound
 %audio.hide{:src => "/assets/sounds/season0ambient.wav", :preload => "auto"}
@@ -33,6 +35,11 @@
 %img.hide{:src => "/assets/seasonsproject/hotspot_season0_03.png"}
 %img.hide{:src => "/assets/seasonsproject/hotspot_season0_04.png"}
 %img.hide{:src => "/assets/seasonsproject/hotspot_season0_05.png"}
+%audio.hide{:src => "/assets/sounds/hotspot_season0_01.wav", :preload => "auto"}
+%audio.hide{:src => "/assets/sounds/hotspot_season0_02.wav", :preload => "auto"}
+%audio.hide{:src => "/assets/sounds/hotspot_season0_03.wav", :preload => "auto"}
+%audio.hide{:src => "/assets/sounds/hotspot_season0_04.wav", :preload => "auto"}
+%audio.hide{:src => "/assets/sounds/hotspot_season0_05.wav", :preload => "auto"}
 // **************************************************************************************
 // **************************************************************************************
 
@@ -60,8 +67,15 @@
 #Header
   .contentwrapper
     %a.seasoninlinelogo{:href => "/templates/index"}
-    %a.do-test1{:href => nil}
-      Toogle ambient sound
+    %ul.usermenu
+      %li.sound.do-ToggleSound
+        %span
+          Off / On
+      %li.usersubmenu
+        %span
+          Welcome 
+          %strong
+            Frédéric
 #Content
 #Footer
   .contentwrapper
