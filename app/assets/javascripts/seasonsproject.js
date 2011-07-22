@@ -462,11 +462,11 @@ SeasonsCarousel = function (destID, destH, destW) {
         this.season0ambientsound = new buzz.sound("/assets/sounds/season0ambient.wav", {preload:true, loop:true});
         this.season0ambientsound.setVolume(0, 0);
         this.season0canvascontent.push (
-          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", true, this, "/assets/sounds/hotspot_season0_01.wav", "Video-Season0-01", false),
-          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_02.png", 517, 406, "PopIn-Season0-02", false, this, "/assets/sounds/hotspot_season0_02.wav"),
-          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_03.png", 810, 434, "PopIn-Season0-03", false, this, "/assets/sounds/hotspot_season0_03.wav"),
-          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_04.png", 408, 175, "PopIn-Season0-04", false, this, "/assets/sounds/hotspot_season0_04.wav"),
-          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_05.png", 65, 432, "PopIn-Season0-05", false, this, "/assets/sounds/hotspot_season0_05.wav")
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_01.png", 737, 232, "PopIn-Season0-01", true, this, "/assets/sounds/season0fx01.wav", "Video-Season0-01", false),
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_02.png", 517, 406, "PopIn-Season0-02", false, this, "/assets/sounds/season0fx02.wav"),
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_03.png", 810, 434, "PopIn-Season0-03", false, this, "/assets/sounds/season0fx03.wav"),
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_04.png", 408, 175, "PopIn-Season0-04", false, this, "/assets/sounds/season0fx04.wav"),
+          new SvgHotSpot(this.season0canvas, "/assets/seasonsproject/hotspot_season0_05.png", 65, 432, "PopIn-Season0-05", false, this, "/assets/sounds/season0fx05.wav")
         );
       break;
       case 1:
